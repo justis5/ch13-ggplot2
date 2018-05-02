@@ -12,27 +12,28 @@ library(ggplot2)
 
 # Draw a bar chart of the diamonds data, organized by cut
 # Each bar's height is based on the "count" (number) of diamonds with that cut
-
+ggplot(data = diamonds) + geom_bar(mapping = aes(x = cut))
 
 # Use the `stat_count` to apply the statistical transformation "count" to the 
 # diamonds by cut. You do not need a separate geometry layer!
-
+ggplot(data = diamonds) + stat_count(mapping = aes(x = cut))
 
 # Use the `stat_summary` function to draw a chart with a summary layer.
 # Map the x-position to diamond `cut`, and the y-position to diamond `depth`
 # Bonus: use `min` as the function ymin, `max` as the function ymax, and `median` 
 # as the function y
-
+ggplot(data = diamonds, mapping = aes(x = cut, y = depth)) + 
+  stat_summary(fun.ymin = "min", fun.ymax = "max", fun.y = "median")
 
 
 ## Position Adjustments
 
 # Draw a bar chart of diamonds organized by cut, with each bar filled by clarity.
 # You should see a _stacked_ bar chart.
-
+ggplot(data = diamonds) + geom_bar(mapping = aes(x = cut, fill = clarity))
 
 # Draw the same chart again, but with each element positioned to "fill" the y axis
-
+ggplot(data = diamonds) + gemo_bar(mapping = aes(x = cut, ))
 
 # Draw the same chart again, but with each element positioned to "dodge" each other
 
